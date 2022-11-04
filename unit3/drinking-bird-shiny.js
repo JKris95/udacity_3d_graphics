@@ -44,18 +44,29 @@ function createDrinkingBird() {
 	headMaterial.color.g = 1/255;
 	headMaterial.color.b = 5/255;
 
-	var hatMaterial = new THREE.MeshLambertMaterial( );
+	var hatAndBodyShininess = 100.0;
+	var commonSpecularColor = new THREE.Color( 0.5, 0.5, 0.5 );
+
+	var hatMaterial = new THREE.MeshPhongMaterial( );
 	hatMaterial.color.r = 24/255;
 	hatMaterial.color.g = 38/255;
 	hatMaterial.color.b = 77/255;
+	hatMaterial.shininess = hatAndBodyShininess;
+	hatMaterial.specular = commonSpecularColor;
 
-	var bodyMaterial = new THREE.MeshLambertMaterial( );
+	var bodyMaterial = new THREE.MeshPhongMaterial( );
 	bodyMaterial.color.setRGB( 31/255, 86/255, 169/255 );
+	bodyMaterial.shininess = hatAndBodyShininess;
+	bodyMaterial.specular = commonSpecularColor;
 
-	var legMaterial = new THREE.MeshLambertMaterial( );
+	var legMaterial = new THREE.MeshPhongMaterial( );
 	legMaterial.color.setHex( 0xAdA79b );
+	legMaterial.shininess = 4.0;
+	legMaterial.specular = commonSpecularColor;
 
 	var footMaterial = new THREE.MeshLambertMaterial( { color: 0x960f0b } );
+	footMaterial.shininess = 30.0;
+	footMaterial.specular = commonSpecularColor;
 
 	var sphere, cylinder, cube;
 
