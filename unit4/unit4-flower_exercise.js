@@ -41,11 +41,17 @@ function fillScene() {
 	// YOUR CODE HERE
 	// add code here to make 24 petals, radiating around the sphere
 	// Just rotates and positions on the cylinder and petals are needed.
-	var cylinder = new THREE.Mesh( cylGeom, petalMaterial );
-	var petal = new THREE.Object3D();
-	petal.add( cylinder );
-
-	flower.add( petal );
+	for (var i = 0; i < 24; i++){
+		var cylinder = new THREE.Mesh( cylGeom, petalMaterial );
+		cylinder.position.y = petalLength * 0.5;
+		var petal = new THREE.Object3D();
+		petal.add( cylinder );
+		// Rotation order is z, y, x
+		petal.rotation = new THREE.Vector3(0, 2 * Math.PI * 1/24 * i, Math.PI * 0.5);
+		petal.position.y = flowerHeight;
+	
+		flower.add( petal );
+	}
 
 	// Rest of the flower
 	var stamenMaterial = new THREE.MeshLambertMaterial( { color: 0x333310 } );

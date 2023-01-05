@@ -54,9 +54,8 @@ function fillScene() {
 	// YOUR CHANGES HERE
 	// These positions are given just so you can see the stick.
 	// You will need to reposition, etc.
-	cylinder.position.x = -20;
-	cylinder.position.y = 30;
-	cylinder.position.z = -55;
+	cylinder.position = new THREE.Vector3(sphere.x, 50, sphere.z);
+	cylinder.rotation.x = Math.PI * 0.5;
 
 	scene.add( cylinder );
 }
