@@ -79,19 +79,19 @@ function fillScene() {
 	var largeClockHand = new THREE.Object3D();
 	largeClockHand.add(cube);
 	largeClockHand.rotation.y = -60 * Math.PI/180;
-	scene.add( cube );
+	scene.add( largeClockHand );
 
 	var sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 0.5, 32, 16 ), hourHandMaterial );
+	var smallClockHand = new THREE.Object3D();
+	smallClockHand.add(sphere);
 	sphere.position.y = 18;	// move the hand above the other hand
 	sphere.position.x = 50/2 - 10;
 	sphere.scale.x = 50;
 	sphere.scale.y = 4;
 	sphere.scale.z = 4;
-	var smallClockHand = new THREE.Object3D();
-	smallClockHand.add(sphere);
 	smallClockHand.rotation.y = 30 * Math.PI/180;
-	scene.add( sphere );
+	scene.add( smallClockHand );
 }
 
 function init() {
