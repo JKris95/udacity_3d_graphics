@@ -21,16 +21,17 @@ var ground = true;
 * @param segmentsWidth - tessellation around equator, like radiusSegments in CylinderGeometry
 * @param openEnded - whether the ends of the cone are generated; true means they are not
 */
-function createCylinderFromEnds( material, radiusTop, radiusBottom, top, bottom, segmentsWidth, openEnded)
+function createCylinderFromEnds( material, radiusTop, radiusBottom, top, 
+	bottom, segmentsWidth, openEnded)
 {
 	// defaults
 	segmentsWidth = (segmentsWidth === undefined) ? 32 : segmentsWidth;
 	openEnded = (openEnded === undefined) ? false : openEnded;
 
 	// Dummy settings, replace with proper code:
-	var length = 100;
-	var cylAxis = new THREE.Vector3(100,100,-100);
-	var center = new THREE.Vector3(-100,100,100);
+	var cylAxis = new THREE.Vector3().subVectors(top, bottom);
+	var length = bottom.distanceTo(top);
+	var center = bottom.lerp(top, 0.5);
 	////////////////////
 
 	var cylGeom = new THREE.CylinderGeometry( radiusTop, radiusBottom, length, segmentsWidth, 1, openEnded );
