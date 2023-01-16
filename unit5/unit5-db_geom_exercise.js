@@ -164,13 +164,21 @@ function createDrinkingBird() {
 	// YOUR CODE HERE
 	// Add a crossbar support, a nose, and eyes.
 	// Crossbar: use crossbarMaterial and
-	//   THREE.CylinderGeometry( XX, XX, XX, 32 ) for the tessellation.
+	//   THREE.CylinderGeometry( >>, XX, XX, 32 ) for the tessellation.
 	//   The cylinder should have a radius of 5, length 200 and be at height Y=360
 	//   and rotated 90 degrees into position.
+	cylinder = new THREE.Mesh(new THREE.CylinderGeometry( 5, 5, 200, 32 ), crossbarMaterial);
+	cylinder.rotation = new THREE.Vector3(Math.PI * 0.5, 0, 0);
+	cylinder.position = new THREE.Vector3(0, 360, 0);
+	scene.add(cylinder);
 	// Nose: use headMaterial and
 	//   THREE.CylinderGeometry( XX, XX, XX, 32 ) for the tessellation.
 	//   The cone should have a radius of 6 at the tip, 14 at the bottom, height 70
 	//   It should be rotated 90 degrees and put into position at -70, 530.
+	cylinder = new THREE.Mesh(new THREE.CylinderGeometry(6, 14, 70, 32), headMaterial);
+	cylinder.rotation.z = Math.PI * 0.5;
+	cylinder.position = new THREE.Vector3(-70, 530, 0);
+	scene.add(cylinder);
 	// Eyes: use eyeMaterial and
 	//   THREE.SphereGeometry( XX, 32, 16 ) for the tessellation.
 	//   Each sphere should have radius of 10 and be moved to X=-48, Y=560,
