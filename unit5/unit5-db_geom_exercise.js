@@ -173,10 +173,7 @@ function createDrinkingBird() {
 	cylinder.rotation.z = Math.PI * 0.5;
 	cylinder.position = new THREE.Vector3(-70, 530, 0);
 	scene.add(cylinder);
-	// Eyes: use eyeMaterial and
-	//   THREE.SphereGeometry( XX, 32, 16 ) for the tessellation.
-	//   Each sphere should have radius of 10 and be moved to X=-48, Y=560,
-	//   then rotated 20 degrees left and right to make a pair.
+	// Eyes
 	var eyeGeometry = new THREE.SphereGeometry(10, 32, 16);
 	var leftEyeContainer = new THREE.Object3D();
 	var leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
