@@ -297,7 +297,9 @@ function render() {
 	renderer.render( scene, camera );
 
 	// Student: set rearCam so it's pointing in the opposite direction than the camera
-
+	rearCam.position.copy( camera.position );
+	var rearCamTarget = rearCam.position.clone().add(rearCam.position.clone().sub(cameraControls.target));
+	rearCam.lookAt( rearCamTarget );
 	// rearview render
 	renderer.enableScissorTest( true );
 	// setScissor could be set just once in this particular case,
