@@ -22,18 +22,8 @@ function fillScene() {
 	// at -1000,-1000,-1000, -900,-1000,-1000,
 	// and so on, for the 21*21*21 = 9261 points.
 
-	for ( var i = 0; i < 8000; i ++ ) {
-
-		var vertex = new THREE.Vector3();
-		// accept the point only if it's in the sphere
-		do {
-			vertex.x = 2000 * Math.random() - 1000;
-			vertex.y = 2000 * Math.random() - 1000;
-			vertex.z = 2000 * Math.random() - 1000;
-		} while ( vertex.length() > 1000 );
-
-		geometry.vertices.push( vertex );
-
+	for ( var yPosition = -1000; yPosition <= 1000; yPosition += 100 ) {
+		addXZParticlePlane(geometry, -1000, 1000, 21, yPosition);
 	}
 
 	var disk = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/disc.png' );
@@ -44,6 +34,29 @@ function fillScene() {
 	var particles = new THREE.ParticleSystem( geometry, material );
 	particles.sortParticles = true;
 	scene.add( particles );
+}
+
+function addXParticleRow(geometry, startValue, endValue, count, yPosition, zPosition){
+	var vertextCount = 0;
+	var step = (endValue - startValue) / (count - 1);
+	for (var xPosition = startValue; xPosition <= endValue; xPosition += step){
+		var vertex = new THREE.Vector3(xPosition, yPosition, zPosition);
+		geometry.vertices.push( vertex );
+		vertextCount++;
+	}
+
+	return vertextCount;
+}
+
+// Limited to square particle plane
+function addXZParticlePlane(geometry, startValue, endValue, count, yPosition){
+	var vertextCount = 0;
+	var step = (endValue - startValue) / (count - 1);
+	for (var zPosition = startValue; zPosition <= endValue; zPosition += step){
+		vertexCount += addXParticleRow(geometry, startValue, endValue, count, yPosition, zPosition);
+	}
+
+	return vertextCount;
 }
 
 function init() {
