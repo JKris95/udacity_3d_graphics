@@ -9,6 +9,8 @@ var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting
 var camera, scene, renderer;
 var cameraControls;
 
+var vertexCount = 0;
+
 var clock = new THREE.Clock();
 
 function fillScene() {
@@ -23,7 +25,7 @@ function fillScene() {
 	// and so on, for the 21*21*21 = 9261 points.
 
 	for ( var yPosition = -1000; yPosition <= 1000; yPosition += 100 ) {
-		addXZParticlePlane(geometry, -1000, 1000, 21, yPosition);
+		vertexCount += addXZParticlePlane(geometry, -1000, 1000, 21, yPosition);
 	}
 
 	var disk = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/disc.png' );
@@ -31,7 +33,7 @@ function fillScene() {
 		{ size: 35, sizeAttenuation: false, map: disk, transparent: true } );
 	material.color.setHSL( 0.9, 0.2, 0.6 );
 
-	var particles = new THREE.ParticleSystem( geometry, material );
+	var particles = new THREE.ParticleSystem( geometry, material, {sizeAttenuation: false});
 	particles.sortParticles = true;
 	scene.add( particles );
 }
@@ -50,13 +52,13 @@ function addXParticleRow(geometry, startValue, endValue, count, yPosition, zPosi
 
 // Limited to square particle plane
 function addXZParticlePlane(geometry, startValue, endValue, count, yPosition){
-	var vertextCount = 0;
+	var vertexCount = 0;
 	var step = (endValue - startValue) / (count - 1);
 	for (var zPosition = startValue; zPosition <= endValue; zPosition += step){
 		vertexCount += addXParticleRow(geometry, startValue, endValue, count, yPosition, zPosition);
 	}
 
-	return vertextCount;
+	return vertexCount;
 }
 
 function init() {
