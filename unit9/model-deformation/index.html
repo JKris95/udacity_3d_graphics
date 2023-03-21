@@ -29,7 +29,7 @@ void main() {
 	deformedPosition.z -= sqrt(uSphereRadius2);
 	gl_Position = projectionMatrix * modelViewMatrix * vec4( deformedPosition, 1.0 );
 
-	vNormal = normalize( normalMatrix * modifiedNormal );
+	vNormal = normalize( normalMatrix * normal );
 	vec4 mvPosition = modelViewMatrix * vec4( deformedPosition, 1.0 );
 	vViewPosition = -mvPosition.xyz;
 }
